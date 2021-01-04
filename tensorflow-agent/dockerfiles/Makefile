@@ -5,7 +5,7 @@ build: docker_build output
 release: docker_pull docker_build docker_push
 
 # Image and binary can be overidden with env vars.
-DOCKER_IMAGE ?= carml/tensorflow
+DOCKER_IMAGE ?= c3sr/tensorflow
 
 # Get System architecture
 ARCH ?= $(shell go env GOARCH)
@@ -89,7 +89,6 @@ docker_push_gpu_ngc: # Tag image as latest and Push to DockerHub
 	docker tag $(DOCKER_IMAGE):$(ARCH)-gpu-ngc-$(DOCKER_TAG) $(DOCKER_IMAGE):$(ARCH)-gpu-ngc-latest
 	docker push $(DOCKER_IMAGE):$(ARCH)-gpu-ngc-$(DOCKER_TAG)
 	docker push $(DOCKER_IMAGE):$(ARCH)-gpu-ngc-latest
-
 
 docker_push: docker_push_cpu docker_push_gpu docker_push_gpu_ngc
 
