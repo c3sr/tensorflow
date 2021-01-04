@@ -4,9 +4,9 @@ import (
 	"context"
 	"testing"
 
-	"github.com/rai-project/dlframework/framework/options"
-	nvidiasmi "github.com/rai-project/nvidia-smi"
-	tf "github.com/rai-project/tensorflow"
+	"github.com/c3sr/dlframework/framework/options"
+	nvidiasmi "github.com/c3sr/nvidia-smi"
+	tf "github.com/c3sr/tensorflow"
 	"github.com/stretchr/testify/assert"
 )
 

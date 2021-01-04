@@ -31,7 +31,7 @@ import (
 	"unsafe"
 
 	protobuf "github.com/golang/protobuf/proto"
-	proto "github.com/rai-project/tensorflow"
+	proto "github.com/c3sr/tensorflow"
 )
 
 // Session drives a TensorFlow graph computation.

@@ -3,7 +3,7 @@ syntax = "proto3";
 option cc_enable_arenas = true;
 package tensorflow;
 
-option go_package = "github.com/rai-project/tensorflow";
+option go_package = "github.com/c3sr/tensorflow";
 
 import "graph.proto";
 import "cluster.proto";

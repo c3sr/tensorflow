@@ -1,11 +1,7 @@
 # MLModelScope TensorFlow Agent
 
-[![Build Status](https://travis-ci.org/rai-project/tensorflow.svg?branch=master)](https://travis-ci.org/rai-project/tensorflow)
-[![Build Status](https://dev.azure.com/dakkak/rai/_apis/build/status/rai-project.tensorflow?branchName=master)](https://dev.azure.com/dakkak/rai/_build/latest?definitionId=22&branchName=master)
-[![Go Report Card](https://goreportcard.com/badge/github.com/rai-project/tensorflow)](https://goreportcard.com/report/github.com/rai-project/tensorflow)
+[![Go Report Card](https://goreportcard.com/badge/github.com/c3sr/tensorflow)](https://goreportcard.com/report/github.com/c3sr/tensorflow)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-
-[![](https://images.microbadger.com/badges/version/carml/tensorflow:ppc64le-gpu-latest.svg)](https://microbadger.com/images/carml/tensorflow:ppc64le-gpu-latest> 'Get your own version badge on microbadger.com') [![](https://images.microbadger.com/badges/version/carml/tensorflow:ppc64le-cpu-latest.svg)](https://microbadger.com/images/carml/tensorflow:ppc64le-cpu-latest 'Get your own version badge on microbadger.com') [![](https://images.microbadger.com/badges/version/carml/tensorflow:amd64-cpu-latest.svg)](https://microbadger.com/images/carml/tensorflow:amd64-cpu-latest 'Get your own version badge on microbadger.com') [![](https://images.microbadger.com/badges/version/carml/tensorflow:amd64-gpu-latest.svg)](https://microbadger.com/images/carml/tensorflow:amd64-gpu-latest 'Get your own version badge on microbadger.com')
 
 This is the TensorFlow agent for [MLModelScope](mlmodelscope.org), an open-source framework and hardware agnostic, extensible and customizable platform for evaluating and profiling ML models across datasets / frameworks / systems, and within AI application pipelines.
 
@@ -15,7 +11,6 @@ One can evaluate the **~80** models on any systems of insterest with either loca
 Check out [MLModelScope](mlmodelscope.org) and welcome to contribute.
 
 # Bare Minimum Installation
-
 
 ## Prerequsite System Library Installation
 We first discuss a bare minimum tensorflow-agent installation without the tracing and profiling capabilities. To make this work, you will need to have the following system libraries preinstalled in your system. 
@@ -71,7 +66,7 @@ export LIBRARY_PATH=$LIBRARY_PATH:/opt/tensorflow/lib
 export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/opt/tensorflow/lib
 ```
 
-You can test the installed TensorFlow C library using an [examle C program](https://www.tensorflow.org/install/lang_c#build).
+You can test the installed TensorFlow C library using an [example C program](https://www.tensorflow.org/install/lang_c#build).
 
 To build the TensorFlow C library from source, refer to [TensorFlow in Go](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/go#building-the-tensorflow-c-library-from-source) .
 
@@ -104,11 +99,11 @@ brew install jpeg-turbo
 ```
 
 
-## Installation of GO for Compilation
+## Installation of Go for Compilation
 
 Since we use `go` for MLModelScope development, it's required to have `go` installed in your system before proceed.
 
-Please follow [Installing Go Compiler](https://github.com/rai-project/rai/blob/master/docs/developer_guide.md) to have `go` installed.
+Please follow [Installing Go Compiler](https://github.com/c3sr/rai/blob/master/docs/developer_guide.md) to have `go` installed.
 
 
 ## Bare Minimum Tensorflow-agent Installation
@@ -116,14 +111,14 @@ Please follow [Installing Go Compiler](https://github.com/rai-project/rai/blob/m
 Download and install the MLModelScope TensorFlow Agent by running the following command in any location, assuming you have installed `go` following the above instruction.
 
 ```
-go get -v github.com/rai-project/tensorflow
+go get -v github.com/c3sr/tensorflow
 
 ```
 
 You can then install the dependency packages through `go get`.
 
 ```
-cd $GOPATH/src/github.com/rai-project/tensorflow
+cd $GOPATH/src/github.com/c3sr/tensorflow
 go get -u -v ./...
 ```
 
@@ -146,13 +141,13 @@ in your `~/.bashrc` or `~/.zshrc` file and then run either `source ~/.bashrc` or
 
 Build the TensorFlow agent with GPU enabled
 ```
-cd $GOPATH/src/github.com/rai-project/tensorflow/tensorflow-agent
+cd $GOPATH/src/github.com/c3sr/tensorflow/tensorflow-agent
 go build 
 ```
 
 Build the TensorFlow agent without GPU or libjpeg-turbo
 ```
-cd $GOPATH/src/github.com/rai-project/tensorflow/tensorflow-agent
+cd $GOPATH/src/github.com/c3sr/tensorflow/tensorflow-agent
 go build -tags="nogpu nolibjpeg" 
 ```
 
@@ -164,7 +159,7 @@ To run the agent, you need to setup the correct configuration file for the agent
 
 So let's just set them up as is, and worry about the detailed configuration parameter values later. 
 
-You must have a `carml` config file called `.carml_config.yml` under your home directory. An example config file `carml_config.yml.example` is in [github.com/rai-project/MLModelScope](https://github.com/rai-project/MLModelScope) . You can move it to `~/.carml_config.yml`.
+You must have a `carml` config file called `.carml_config.yml` under your home directory. An example config file `carml_config.yml.example` is in [github.com/c3sr/MLModelScope](https://github.com/c3sr/MLModelScope) . You can move it to `~/.carml_config.yml`.
 
 The following configuration file can be placed in `$HOME/.carml_config.yml` or can be specified via the `--config="path"` option.
 
@@ -201,7 +196,7 @@ With the configuration and the above  bare minimumn installation, you should be 
 
 Here are a few examples. First, make sure we are in the right location
 ```
-cd $GOPATH/src/github.com/rai-project/tensorflow/tensorflow-agent
+cd $GOPATH/src/github.com/c3sr/tensorflow/tensorflow-agent
 ```
 
 To see a list of help
@@ -319,8 +314,8 @@ Instead of using a local Tensorflow library to install the MLModelScope `tensorf
 You need to follow the above similar procedures to setup `go` and get all the related `rai-project` projects in your local go development environment.
 
 ```
-go get -v github.com/rai-project/tensorflow
-cd $GOPATH/src/github.com/rai-project/tensorflow
+go get -v github.com/c3sr/tensorflow
+cd $GOPATH/src/github.com/c3sr/tensorflow
 go get -u -v ./...
 ```
 
@@ -369,18 +364,18 @@ export GODEBUG=cgocheck=0
 
 Build the TensorFlow agent with GPU enabled
 ```
-cd $GOPATH/src/github.com/rai-project/tensorflow/tensorflow-agent
+cd $GOPATH/src/github.com/c3sr/tensorflow/tensorflow-agent
 go build 
 ```
 
 Build the TensorFlow agent without GPU or libjpeg-turbo
 ```
-cd $GOPATH/src/github.com/rai-project/tensorflow/tensorflow-agent
+cd $GOPATH/src/github.com/c3sr/tensorflow/tensorflow-agent
 go build -tags="nogpu nolibjpeg" 
 ```
 
 
-# Use the Agent with the [MLModelScope Web UI](https://github.com/rai-project/mlmodelscope)
+# Use the Agent with the [MLModelScope Web UI](https://github.com/c3sr/mlmodelscope)
 
 ```
 ./tensorflow-agent serve -l -d -v
@@ -415,7 +410,7 @@ An example run is
 docker run --gpus=all --shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864 --privileged=true \
     --network host \
     -v ~/.carml_config.yml:/root/.carml_config.yml \ 
-    -v ~/results:/go/src/github.com/rai-project/tensorflow/results \
+    -v ~/results:/go/src/github.com/c3sr/tensorflow/results \
     carml/tensorflow:amd64-gpu-latest predict urls --trace_level=FRAMEWORK_TRACE --model_name=Inception_v3
 ```
 NOTE: The SHMEM allocation limit is set to the default of 64MB.  This may be insufficient for TensorFlow.  NVIDIA recommends the use of the following flags:

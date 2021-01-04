@@ -9,9 +9,9 @@ import (
 	"time"
 
 	opentracing "github.com/opentracing/opentracing-go"
-	proto "github.com/rai-project/tensorflow"
-	graph "github.com/rai-project/tensorflow/graph"
-	"github.com/rai-project/tracer"
+	proto "github.com/c3sr/tensorflow"
+	graph "github.com/c3sr/tensorflow/graph"
+	"github.com/c3sr/tracer"
 )
 
 type traceNode struct {

@@ -18,7 +18,7 @@ syntax = "proto3";
 package tensorflow;
 option cc_enable_arenas = true;
 option java_outer_classname = "DevicePropertiesProtos";
-option go_package = "github.com/rai-project/tensorflow";
+option go_package = "github.com/c3sr/tensorflow";
 
 message DeviceProperties {
   // Device type (CPU, GPU, ...)

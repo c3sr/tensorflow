@@ -9,7 +9,7 @@ import (
 	"github.com/Unknwon/com"
 	"github.com/k0kubun/pp"
 	"github.com/pkg/errors"
-	tf "github.com/rai-project/tensorflow"
+	tf "github.com/c3sr/tensorflow"
 )
 
 var Categories = map[string]string{

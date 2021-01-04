@@ -1,5 +1,5 @@
-FROM carml/base:amd64-cpu-latest
-MAINTAINER Abdul Dakkak <dakkak@illinois.edu>
+FROM c3sr/base:amd64-cpu-latest
+MAINTAINER Yen-Hsiang Chang <yhchang3@illinois.edu>
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
@@ -9,96 +9,36 @@ ARG VERSION
 ARG ARCH
 ARG FRAMEWORK_VERSION
 LABEL org.carml.tensorflow.build-date=$BUILD_DATE \
-  org.carml.tensorflow.name="tensorflow agent" \
-  org.carml.tensorflow.description="" \
-  org.carml.tensorflow.url="https://www.carml.org/" \
-  org.carml.tensorflow.vcs-ref=$VCS_REF \
-  org.carml.tensorflow.vcs-url=$VCS_URL \
-  org.carml.tensorflow.vendor="MLModelScope" \
-  org.carml.tensorflow.arch=$ARCH \
-  org.carml.tensorflow.version=$VERSION \
-  org.carml.tensorflow.framework_version=$FRAMEWORK_VERSION \
-  org.carml.tensorflow.schema-version="1.0"
+      org.carml.tensorflow.name="tensorflow agent" \
+      org.carml.tensorflow.description="" \
+      org.carml.tensorflow.url="https://www.carml.org/" \
+      org.carml.tensorflow.vcs-ref=$VCS_REF \
+      org.carml.tensorflow.vcs-url=$VCS_URL \
+      org.carml.tensorflow.vendor="MLModelScope" \
+      org.carml.tensorflow.arch=$ARCH \
+      org.carml.tensorflow.version=$VERSION \
+      org.carml.tensorflow.framework_version=$FRAMEWORK_VERSION \
+      org.carml.tensorflow.schema-version="1.0"
 
-########## INSTALLATION STEPS ###################
+# install Tensorflow for C
+RUN wget https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-1.14.0.tar.gz
 
-RUN add-apt-repository ppa:webupd8team/java &&\
-  apt-get update -y && apt-get install -y --no-install-recommends \
-    openjdk-8-jdk \
-    wget \
-    curl \
-    unzip \
-    zip \
-    git \
-    rsync \
-    python-dev \
-    swig \
-    python-pip \
-    libcurl3-dev \
-    libfreetype6-dev \
-    libzmq3-dev \
-    libhdf5-dev \
-		libc-ares-dev \
-		gpg-agent && \
-  rm -rf /var/lib/apt/lists/*
+RUN tar -C /opt/tensorflow -xzf libtensorflow-cpu-linux-x86_64-1.14.0.tar.gz
 
-# Install bazel
-ENV BAZEL_VERSION 0.24.1
-RUN apt-get update && \
-	apt-get install -y --no-install-recommends \
-   bash-completion \
-   g++ \
-   zlib1g-dev && \
-	curl -LO "https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel_${BAZEL_VERSION}-linux-x86_64.deb" && \
-	dpkg -i bazel_*.deb && \
-	bazel version
+RUN rm libtensorflow-cpu-linux-x86_64-1.14.0.tar.gz
 
-# install pre-requisites
-RUN pip install -U setuptools && \
-  pip --no-cache-dir install \
-  six \
-  numpy \
-  wheel
+# setup path
+ENV CGO_CFLAGS="${CGO_CFLAGS} -I /opt/tensorflow/include"
+ENV CGO_CXXFLAGS="${CGO_CXXFLAGS} -I /opt/tensorflow/include"
+ENV CGO_LDFLAGS="${CGO_LDFLAGS} -L /opt/tensorflow/lib"
 
-# get rai-project/tensorflow repository
-ENV PKG github.com/rai-project/tensorflow
+# get github.com/c3sr/tensorflow repository
+ENV PKG github.com/c3sr/tensorflow
 WORKDIR $GOPATH/src/$PKG
 
 RUN git clone --depth=1 --branch=master https://${PKG}.git .
 
-RUN dep ensure -v -no-vendor -update \
-    github.com/rai-project/dlframework \
-    github.com/rai-project/evaluation && \
-    dep ensure -v -vendor-only
-
-RUN cd ${GOPATH}/src/$PKG/vendor/github.com/tensorflow/tensorflow && \
-  export GCC_HOST_COMPILER_PATH=/usr/bin/gcc && \
-  export PYTHON_BIN_PATH=/usr/bin/python3.6 && \
-  export PYTHON_LIB_PATH=/usr/lib/python3.6/dist-packages && \
-  export TF_NEED_GCP=1 && \
-  export TF_NEED_HDFS=1 && \
-  export TF_NEED_JEMALLOC=1 && \
-  export TF_ENABLE_XLA=1 && \
-  export TF_NEED_OPENCL=0 && \
-  export TF_NEED_CUDA=0 && \
-  export TF_NEED_MKL=0 && \
-  export TF_NEED_VERBS=0 && \
-  export TF_NEED_MPI=0 && \
-  ./configure && \
-  bazel build --jobs 4 -c opt --local_resources 20000,1,0.25 //tensorflow:libtensorflow.so
-
-RUN	ls -la ${GOPATH}/src/$PKG/vendor/github.com/tensorflow/tensorflow/bazel-bin/tensorflow && \
-	cp ${GOPATH}/src/$PKG/vendor/github.com/tensorflow/tensorflow/bazel-bin/tensorflow/libtensorflow.so.1.14.0 /usr/local/lib/libtensorflow.so && \
-	ln -s /usr/local/lib/libtensorflow.so /usr/local/lib/libtensorflow.so.1 && \
-	cp ${GOPATH}/src/$PKG/vendor/github.com/tensorflow/tensorflow/bazel-bin/tensorflow/libtensorflow_framework.so.1.14.0 /usr/local/lib/libtensorflow_framework.so.1 && \
-	mkdir /usr/local/include/tensorflow && \
-	cp -r ${GOPATH}/src/$PKG/vendor/github.com/tensorflow/tensorflow/tensorflow/c /usr/local/include/tensorflow
-
-ENV CGO_CFLAGS="${CGO_CFLAGS} -I /usr/local/include"
-ENV CGO_CXXFLAGS="${CGO_CXXFLAGS} -I /usr/local/include"
-ENV CGO_LDFLAGS="${CGO_LDFLAGS} -L /usr/local/lib"
-
-RUN ldconfig
+RUN dep ensure -v -vendor-only
 
 RUN cd $GOPATH/src/$PKG && \
   go build -a -installsuffix cgo -ldflags "-s -w -X ${PKG}/Version=${VERSION} -X ${PKG}/GitCommit=${VCS_REF} -X ${PKG}/BuildDate=${BUILD_DATE}"&& \

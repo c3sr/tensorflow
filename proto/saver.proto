@@ -5,7 +5,7 @@ option cc_enable_arenas = true;
 option java_outer_classname = "SaverProtos";
 option java_multiple_files = true;
 option java_package = "org.tensorflow.util";
-option go_package = "github.com/rai-project/tensorflow";
+option go_package = "github.com/c3sr/tensorflow";
 
 // Protocol buffer representing the configuration of a Saver.
 message SaverDef {

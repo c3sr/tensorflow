@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/rai-project/tensorflow/graph"
+	"github.com/c3sr/tensorflow/graph"
 )
 
 func main() {

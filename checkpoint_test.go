@@ -7,8 +7,8 @@ package tensorflow
 // 	"testing"
 
 // 	"github.com/k0kubun/pp"
-// 	"github.com/rai-project/config"
-// 	"github.com/rai-project/downloadmanager"
+// 	"github.com/c3sr/config"
+// 	"github.com/c3sr/downloadmanager"
 // 	"github.com/stretchr/testify/assert"
 // 	tf "github.com/tensorflow/tensorflow/tensorflow/go"
 // )

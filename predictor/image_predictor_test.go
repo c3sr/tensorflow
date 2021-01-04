@@ -9,12 +9,12 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/rai-project/dlframework"
-	"github.com/rai-project/dlframework/framework/options"
-	raiimage "github.com/rai-project/image"
-	"github.com/rai-project/image/types"
-	nvidiasmi "github.com/rai-project/nvidia-smi"
-	tf "github.com/rai-project/tensorflow"
+	"github.com/c3sr/dlframework"
+	"github.com/c3sr/dlframework/framework/options"
+	raiimage "github.com/c3sr/image"
+	"github.com/c3sr/image/types"
+	nvidiasmi "github.com/c3sr/nvidia-smi"
+	tf "github.com/c3sr/tensorflow"
 	"github.com/stretchr/testify/assert"
 	gotensor "gorgonia.org/tensor"
 )
