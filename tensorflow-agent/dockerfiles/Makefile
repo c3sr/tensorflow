@@ -65,10 +65,10 @@ docker_build_gpu_ngc: # Build GPU Docker image with NGC
 		-t $(DOCKER_IMAGE):$(ARCH)-gpu-ngc-$(DOCKER_TAG) .
 
 docker_pull_cpu:
-	docker pull carml/base:$(ARCH)-cpu-latest
+	docker pull c3sr/base:$(ARCH)-cpu-latest
 
 docker_pull_gpu:
-	docker pull carml/base:$(ARCH)-gpu-latest
+	docker pull c3sr/base:$(ARCH)-gpu-latest
 
 docker_pull_gpu_ngc:
 	docker pull nvcr.io/nvidia/tensorflow:19.06-py3
