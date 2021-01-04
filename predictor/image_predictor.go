@@ -7,9 +7,6 @@ import (
 	"runtime"
 	"strings"
 
-	opentracing "github.com/opentracing/opentracing-go"
-	olog "github.com/opentracing/opentracing-go/log"
-	"github.com/pkg/errors"
 	"github.com/c3sr/dlframework"
 	"github.com/c3sr/dlframework/framework/options"
 	common "github.com/c3sr/dlframework/framework/predictor"
@@ -19,6 +16,9 @@ import (
 	"github.com/c3sr/tensorflow"
 	proto "github.com/c3sr/tensorflow"
 	"github.com/c3sr/tracer"
+	opentracing "github.com/opentracing/opentracing-go"
+	olog "github.com/opentracing/opentracing-go/log"
+	"github.com/pkg/errors"
 	tf "github.com/tensorflow/tensorflow/tensorflow/go"
 )
 

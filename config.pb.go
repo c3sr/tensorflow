@@ -2098,7 +2098,7 @@ func (m *ConfigProto) MarshalTo(dAtA []byte) (int, error) {
 	var l int
 	_ = l
 	if len(m.DeviceCount) > 0 {
-		for k, _ := range m.DeviceCount {
+		for k := range m.DeviceCount {
 			dAtA[i] = 0xa
 			i++
 			v := m.DeviceCount[k]
@@ -2554,7 +2554,7 @@ func (m *CallableOptions) MarshalTo(dAtA []byte) (int, error) {
 		}
 	}
 	if len(m.FeedDevices) > 0 {
-		for k, _ := range m.FeedDevices {
+		for k := range m.FeedDevices {
 			dAtA[i] = 0x32
 			i++
 			v := m.FeedDevices[k]
@@ -2571,7 +2571,7 @@ func (m *CallableOptions) MarshalTo(dAtA []byte) (int, error) {
 		}
 	}
 	if len(m.FetchDevices) > 0 {
-		for k, _ := range m.FetchDevices {
+		for k := range m.FetchDevices {
 			dAtA[i] = 0x3a
 			i++
 			v := m.FetchDevices[k]

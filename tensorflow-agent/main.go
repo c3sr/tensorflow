@@ -8,7 +8,6 @@ import (
 	"path/filepath"
 
 	"github.com/Unknwon/com"
-	"github.com/pkg/errors"
 	"github.com/c3sr/config"
 	dlcmd "github.com/c3sr/dlframework/framework/cmd"
 	cmd "github.com/c3sr/dlframework/framework/cmd/server"
@@ -18,6 +17,7 @@ import (
 	"github.com/c3sr/tensorflow/graph"
 	"github.com/c3sr/tensorflow/predictor"
 	"github.com/c3sr/tracer"
+	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )

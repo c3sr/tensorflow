@@ -6,10 +6,6 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/k0kubun/pp"
-	opentracing "github.com/opentracing/opentracing-go"
-	olog "github.com/opentracing/opentracing-go/log"
-	"github.com/pkg/errors"
 	"github.com/c3sr/config"
 	"github.com/c3sr/dlframework"
 	"github.com/c3sr/dlframework/framework/agent"
@@ -21,6 +17,10 @@ import (
 	"github.com/c3sr/tensorflow"
 	proto "github.com/c3sr/tensorflow"
 	"github.com/c3sr/tracer"
+	"github.com/k0kubun/pp"
+	opentracing "github.com/opentracing/opentracing-go"
+	olog "github.com/opentracing/opentracing-go/log"
+	"github.com/pkg/errors"
 	tf "github.com/tensorflow/tensorflow/tensorflow/go"
 )
 

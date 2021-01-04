@@ -1,5 +1,6 @@
 # MLModelScope TensorFlow Agent
 
+[![Build Status](https://dev.azure.com/yhchang/c3sr/_apis/build/status/c3sr.tensorflow?branchName=master)](https://dev.azure.com/yhchang/c3sr/_build/latest?definitionId=5&branchName=master)
 [![Go Report Card](https://goreportcard.com/badge/github.com/c3sr/tensorflow)](https://goreportcard.com/report/github.com/c3sr/tensorflow)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 

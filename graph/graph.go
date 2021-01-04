@@ -7,9 +7,9 @@ import (
 	"sync"
 
 	"github.com/Unknwon/com"
+	tf "github.com/c3sr/tensorflow"
 	"github.com/k0kubun/pp"
 	"github.com/pkg/errors"
-	tf "github.com/c3sr/tensorflow"
 )
 
 var Categories = map[string]string{

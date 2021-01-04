@@ -1540,7 +1540,7 @@ func (m *Operation) MarshalTo(dAtA []byte) (int, error) {
 		i += copy(dAtA[i:], dAtA2[:j1])
 	}
 	if len(m.Attrs) > 0 {
-		for k, _ := range m.Attrs {
+		for k := range m.Attrs {
 			dAtA[i] = 0x2a
 			i++
 			v := m.Attrs[k]

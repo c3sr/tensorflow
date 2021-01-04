@@ -8,10 +8,10 @@ import (
 	"strings"
 	"time"
 
-	opentracing "github.com/opentracing/opentracing-go"
 	proto "github.com/c3sr/tensorflow"
 	graph "github.com/c3sr/tensorflow/graph"
 	"github.com/c3sr/tracer"
+	opentracing "github.com/opentracing/opentracing-go"
 )
 
 type traceNode struct {

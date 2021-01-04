@@ -23,7 +23,7 @@ LABEL org.carml.tensorflow.build-date=$BUILD_DATE \
 # install Tensorflow for C
 RUN wget https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-cpu-linux-x86_64-1.14.0.tar.gz
 
-RUN tar -C /opt/tensorflow -xzf libtensorflow-cpu-linux-x86_64-1.14.0.tar.gz
+RUN mkdir -p /opt/tensorflow && tar -C /opt/tensorflow -xzf libtensorflow-cpu-linux-x86_64-1.14.0.tar.gz
 
 RUN rm libtensorflow-cpu-linux-x86_64-1.14.0.tar.gz
 

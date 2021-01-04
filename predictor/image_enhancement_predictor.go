@@ -6,8 +6,6 @@ import (
 	"io/ioutil"
 	"strings"
 
-	opentracing "github.com/opentracing/opentracing-go"
-	"github.com/pkg/errors"
 	"github.com/c3sr/config"
 	"github.com/c3sr/dlframework"
 	"github.com/c3sr/dlframework/framework/agent"
@@ -15,6 +13,8 @@ import (
 	common "github.com/c3sr/dlframework/framework/predictor"
 	"github.com/c3sr/tensorflow"
 	"github.com/c3sr/tracer"
+	opentracing "github.com/opentracing/opentracing-go"
+	"github.com/pkg/errors"
 	tf "github.com/tensorflow/tensorflow/tensorflow/go"
 	gotensor "gorgonia.org/tensor"
 )

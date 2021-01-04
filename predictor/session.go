@@ -30,8 +30,8 @@ import (
 	"sync"
 	"unsafe"
 
-	protobuf "github.com/golang/protobuf/proto"
 	proto "github.com/c3sr/tensorflow"
+	protobuf "github.com/golang/protobuf/proto"
 )
 
 // Session drives a TensorFlow graph computation.
@@ -202,7 +202,7 @@ func (s *Session) Run(ctx context.Context, feeds map[Output]*Tensor, fetches []O
 	if runOpts != nil {
 		tracer, err := NewTrace(meta.StepStats, graphPath)
 		if err != nil {
-		 return nil, err
+			return nil, err
 		}
 		if err == nil {
 			tracer.Publish(ctx)

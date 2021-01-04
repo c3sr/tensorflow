@@ -7,8 +7,8 @@ import (
 	"runtime"
 	"runtime/debug"
 
-	"github.com/pkg/errors"
 	imagetypes "github.com/c3sr/image/types"
+	"github.com/pkg/errors"
 	tf "github.com/tensorflow/tensorflow/tensorflow/go"
 	"github.com/tensorflow/tensorflow/tensorflow/go/op"
 	gotensor "gorgonia.org/tensor"

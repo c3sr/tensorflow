@@ -11,8 +11,8 @@ import (
 
 	"path"
 
-	"github.com/golang/protobuf/proto"
 	"github.com/c3sr/tensorflow"
+	"github.com/golang/protobuf/proto"
 )
 
 // Writer writes string of serialized tensorflow.Summary into file
