@@ -5,7 +5,7 @@ build: docker_build output
 release: docker_pull docker_build docker_push
 
 # Image and binary can be overidden with env vars.
-DOCKER_IMAGE ?= c3sr/tensorflow
+DOCKER_IMAGE ?= c3sr/tensorflow-agent
 
 # Get System architecture
 ARCH ?= $(shell go env GOARCH)
