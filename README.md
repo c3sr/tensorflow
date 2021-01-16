@@ -305,84 +305,13 @@ You must have a `carml` config file called `.carml_config.yml` under your home d
 
 The testing steps are very similar to those testing we discussed above, except that you can now safely use both the profiling and publishing services.
 
-
-# Alternative ways to Install Tensorflow-agent using a Tensorflow Docker Image
-
-Instead of using a local Tensorflow library to install the MLModelScope `tensorflow-agent`, we can also use a Tensorflow docker image to start this process. 
-
-## Local Setup
-
-You need to follow the above similar procedures to setup `go` and get all the related `rai-project` projects in your local go development environment.
-
-```
-go get -v github.com/c3sr/tensorflow
-cd $GOPATH/src/github.com/c3sr/tensorflow
-go get -u -v ./...
-```
-
-You also need to have the `.carml_config.yml` configuraiton file as discussed above to be placed under $HOME as `.carml_config.yml`
-
-You can also setup all the external services as discussed above in your local host machine where you plan to use the Tensorflow Docker container.
-
-## Setup within TensorFlow Docker Image
-
-Continue if you have
-
-* installed all the dependencies
-* downloaded carml_config_example.yml to $HOME as .carml_config.yml
-* launched docker external services on the host machine of the docker container you are going to use
-
-, otherwise read above
-
-Assuming you want to use the NGC TensorFlow docker image. Here is an example on how to do this: 
-
-```
-docker run --gpus=all --shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864 -it --privileged=true --network host \
--v $GOPATH:/workspace/go1.12/global \
--v $GOROOT:/workspace/go1.12_root \
--v ~/.carml_config.yml:/root/.carml_config.yml \
-nvcr.io/nvidia/tensorflow:19.06-py3
-```
-
-NOTE: The SHMEM allocation limit is set to the default of 64MB.  This may be insufficient for TensorFlow. NVIDIA recommends the use of the following flags:
-   ```--shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864 ...```
-
-Within the container, set up the environment so that the agent can find the TensorFlow C library.
-
-```
-export GOPATH=/workspace/go1.12/global
-export GOROOT=/workspace/go1.12_root
-export PATH=$GOROOT/bin:$PATH
-
-ln -s /usr/local/lib/tensorflow/libtensorflow_cc.so /usr/local/lib/tensorflow/libtensorflow.so
-export CGO_LDFLAGS="${CGO_LDFLAGS} -L /usr/local/lib/tensorflow/"
-export CGO_CFLAGS="${CGO_CFLAGS} -I /opt/tensorflow/tensorflow-source"
-export CGO_CXXFLAGS="${CGO_CXXFLAGS} -I /opt/tensorflow/tensorflow-source"
-
-export PATH=$PATH:$(go env GOPATH)/bin  
-export GODEBUG=cgocheck=0  
-```
-
-Build the TensorFlow agent with GPU enabled
-```
-cd $GOPATH/src/github.com/c3sr/tensorflow/tensorflow-agent
-go build 
-```
-
-Build the TensorFlow agent without GPU or libjpeg-turbo
-```
-cd $GOPATH/src/github.com/c3sr/tensorflow/tensorflow-agent
-go build -tags="nogpu nolibjpeg" 
-```
-
-
 # Use the Agent with the [MLModelScope Web UI](https://github.com/c3sr/mlmodelscope)
 
 ```
 ./tensorflow-agent serve -l -d -v
 ```
 
-Refer to [TODO] to run the web UI to interact with the agent.
+Refer to [here](https://docs.mlmodelscope.org/installation/webserver/) to run the web UI to interact with the agent.
 
 # Use the Agent through Command Line
 
@@ -399,11 +328,9 @@ An example run is
 ./tensorflow-agent predict urls --trace_level=FRAMEWORK_TRACE --model_name=Inception_v3
 ```
 
-Refer to [TODO] to run the web UI to interact with the agent.
-
 # Use the Agent through Pre-built Docker Images
 
-We have [pre-built docker images](https://hub.docker.com/r/carml/tensorflow/tags) on Dockerhub. The images are `carml/tensorflow:amd64-cpu-latest`, `carml/tensorflow:amd64-gpu-latest` and `carml/tensorflow:amd64-gpu-ngc-latest`. The entrypoint is set as `tensorflow-agent` thus these images act similar as the command line above.
+We have [pre-built docker images](https://hub.docker.com/r/c3sr/tensorflow-agent) on Dockerhub. The images are `c3sr/tensorflow-agent:amd64-cpu-latest`, `c3sr/tensorflow-agent:amd64-gpu-latest`. The entrypoint is set as `tensorflow-agent` thus these images act similar as the command line above.
 
 An example run is
 
@@ -412,7 +339,7 @@ docker run --gpus=all --shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864 
     --network host \
     -v ~/.carml_config.yml:/root/.carml_config.yml \ 
     -v ~/results:/go/src/github.com/c3sr/tensorflow/results \
-    carml/tensorflow:amd64-gpu-latest predict urls --trace_level=FRAMEWORK_TRACE --model_name=Inception_v3
+    c3sr/tensorflow-agent:amd64-gpu-latest predict urls --trace_level=FRAMEWORK_TRACE --model_name=Inception_v3
 ```
 NOTE: The SHMEM allocation limit is set to the default of 64MB.  This may be insufficient for TensorFlow.  NVIDIA recommends the use of the following flags:
    ```--shm-size=1g --ulimit memlock=-1 --ulimit stack=67108864 ...```
