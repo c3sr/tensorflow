@@ -1,7 +1,7 @@
 name: ResNet_v1_152
 framework:
   name: TensorFlow
-  version: 1.12
+  version: 1.14
 version: 1.0
 container:
   amd64:

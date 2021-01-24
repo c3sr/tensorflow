@@ -1,7 +1,7 @@
 name: AI_Matrix_Densenet121
 framework:
   name: TensorFlow
-  version: 1.12
+  version: 1.14
 version: 1.0
 container:
   amd64:

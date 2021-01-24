@@ -32,6 +32,8 @@ ENV CGO_CFLAGS="${CGO_CFLAGS} -I /opt/tensorflow/include"
 ENV CGO_CXXFLAGS="${CGO_CXXFLAGS} -I /opt/tensorflow/include"
 ENV CGO_LDFLAGS="${CGO_LDFLAGS} -L /opt/tensorflow/lib"
 
+ENV LD_LIBRARY_PATH /opt/tensorflow/lib:${LD_LIBRARY_PATH}
+
 # get github.com/c3sr/tensorflow repository
 ENV PKG github.com/c3sr/tensorflow
 WORKDIR $GOPATH/src/$PKG

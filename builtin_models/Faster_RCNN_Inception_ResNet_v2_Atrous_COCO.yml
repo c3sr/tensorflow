@@ -1,7 +1,7 @@
 name: Faster_RCNN_Inception_ResNet_v2_Atrous_COCO # name of your model
 framework:
   name: TensorFlow # framework for the model
-  version: 1.12 # framework version contraint
+  version: 1.14 # framework version contraint
 version: 1.0 # version information in semantic version format
 container: # containers used to perform model evaluation
   amd64:
