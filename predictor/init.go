@@ -1,7 +1,7 @@
 package predictor
 
 // #cgo LDFLAGS: -ltensorflow
-// #cgo CFLAGS: -I${SRCDIR}/../../../tensorflow/tensorflow
+// #cgo CFLAGS: -I/opt/tensorflow/include
 // #include "tensorflow/c/c_api.h"
 import "C"
 

@@ -1,7 +1,7 @@
 name: DeepLabv3_Xception_65_PASCAL_VOC_Train_Val # name of your model
 framework:
   name: TensorFlow # framework for the model
-  version: 1.14 # framework version contraint
+  version: 1.14.0 # framework version contraint
 version: 1.0 # version information in semantic version format
 container: # containers used to perform model evaluation
   amd64:

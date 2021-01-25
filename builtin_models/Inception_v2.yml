@@ -1,7 +1,7 @@
 name: Inception_v2
 framework:
   name: TensorFlow
-  version: 1.14
+  version: 1.14.0
 version: 1.0
 container:
   amd64:

@@ -1,7 +1,7 @@
 name: SSD_MobileNet_v1_FPN_Shared_Box_Predictor_640x640_COCO14_Sync # name of your model
 framework:
   name: TensorFlow # framework for the model
-  version: 1.14 # framework version contraint
+  version: 1.14.0 # framework version contraint
 version: 1.0 # version information in semantic version format
 container: # containers used to perform model evaluation
   amd64:
